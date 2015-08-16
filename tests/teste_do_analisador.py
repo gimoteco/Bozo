@@ -1,5 +1,5 @@
 import unittest
-from analisador import analisador_de_jogada
+from core.analisador import analisador_de_jogada
 
 class AnalisadorTeste(unittest.TestCase):
 
@@ -44,5 +44,3 @@ class AnalisadorTeste(unittest.TestCase):
 
 	def testa_que_nao_deu_nenhuma(self):
 		self.assertIsNone(analisador_de_jogada([1, 2, 5, 5, 6]))
-
-unittest.main()

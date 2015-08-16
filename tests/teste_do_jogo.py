@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 import unittest
-from jogo import Bozo
+from core.jogo import Bozo
 
 class TesteDoBozo(unittest.TestCase):
 
@@ -105,5 +105,3 @@ class TesteDoBozo(unittest.TestCase):
 		self.jogo.jogar([1,2,3,4,5], 5, "sequencia")
 		self.jogo.jogar([1,2,2,2,2], 5, "quadrada")
 		self.jogo.jogar([6,6,6,6,6], 5, "general")
-
-unittest.main()
