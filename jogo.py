@@ -63,8 +63,8 @@ class Bozo:
 
 	def obter_pontuacao_da_jogada(self, nome_da_jogada, eh_de_boca, dados):
 
-		total = JogoDoBozo.obter_adicional_de_boca(nome_da_jogada, eh_de_boca)
-		total += JogoDoBozo.obter_pontuacao_de_jogada_especial(nome_da_jogada)
+		total = Bozo.obter_adicional_de_boca(nome_da_jogada, eh_de_boca)
+		total += Bozo.obter_pontuacao_de_jogada_especial(nome_da_jogada)
 		
 		if nome_da_jogada == "as":
 			total += sum(filter(lambda dado: dado == 1, dados))
