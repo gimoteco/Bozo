@@ -82,8 +82,6 @@ class Bozo:
 
 	@staticmethod
 	def obter_adicional_de_boca(nome_da_jogada, eh_de_boca):
-		jogadas_com_boca = ["general", "fu", "quadrada", "sequencia"]
-
 		if not eh_de_boca or not TiposDeJogada.eh_jogada_especial(nome_da_jogada):
 			return 0
 		if nome_da_jogada == "general":
