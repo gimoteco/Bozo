@@ -8,6 +8,15 @@ class TiposDeJogada:
 	FU = 10
 	SEQUENCIA = 20
 
+	JOGADAS_NUMERICAS = {
+		"as": 1,
+		"duque": 2,
+		"terno": 3,
+		"quadra": 4,
+		"quina": 5,
+		"sena": 6
+	}
+
 	@staticmethod
 	def eh_jogada_especial(nome_da_jogada):
 		return nome_da_jogada in ["general", "fu", "quadrada", "sequencia"]
@@ -64,21 +73,18 @@ class Bozo:
 	def obter_pontuacao_da_jogada(self, nome_da_jogada, eh_de_boca, dados):
 
 		total = Bozo.obter_adicional_de_boca(nome_da_jogada, eh_de_boca)
-		total += Bozo.obter_pontuacao_de_jogada_especial(nome_da_jogada)
-		
-		if nome_da_jogada == "as":
-			total += sum(filter(lambda dado: dado == 1, dados))
-		elif nome_da_jogada == "duque":
-			total += sum(filter(lambda dado: dado == 2, dados))
-		elif nome_da_jogada == "terno":
-			total += sum(filter(lambda dado: dado == 3, dados))
-		elif nome_da_jogada == "quadra":
-			total += sum(filter(lambda dado: dado == 4, dados))
-		elif nome_da_jogada == "quina":
-			total += sum(filter(lambda dado: dado == 5, dados))
-		elif nome_da_jogada == "sena":
-			total += sum(filter(lambda dado: dado == 6, dados))			
+		total += Bozo.obter_pontuacao_de_jogada_especial(nome_da_jogada)	
+		total += Bozo.obter_pontuacao_da_jogada_numerica(nome_da_jogada, dados)
 		return total
+
+	@staticmethod
+	def obter_pontuacao_da_jogada_numerica(nome_da_jogada, dados):
+		if not TiposDeJogada.eh_jogada_especial(nome_da_jogada):
+			numero_do_dado = TiposDeJogada.JOGADAS_NUMERICAS[nome_da_jogada]
+			total = sum(filter(lambda dado: dado == numero_do_dado, dados))
+			return total
+		return 0
+
 
 	@staticmethod
 	def obter_adicional_de_boca(nome_da_jogada, eh_de_boca):
