@@ -3,10 +3,12 @@ from analisador import analisador_de_jogada
 
 class TiposDeJogada:
 
-	GENERAL = 40
-	QUADRADA = 30
-	FU = 10
-	SEQUENCIA = 20
+	JOGADAS_ESPECIAIS = {
+		"general": 40,
+		"quadrada": 30,
+		"sequencia": 20,
+		"fu": 10,
+	}
 
 	JOGADAS_NUMERICAS = {
 		"as": 1,
@@ -19,7 +21,7 @@ class TiposDeJogada:
 
 	@staticmethod
 	def eh_jogada_especial(nome_da_jogada):
-		return nome_da_jogada in ["general", "fu", "quadrada", "sequencia"]
+		return nome_da_jogada in TiposDeJogada.JOGADAS_ESPECIAIS
 
 class Bozo:
 
@@ -60,14 +62,8 @@ class Bozo:
 	@staticmethod
 	def obter_pontuacao_de_jogada_especial(nome_da_jogada):
 		total = 0
-		if nome_da_jogada == "general":
-			total += TiposDeJogada.GENERAL
-		elif nome_da_jogada == "fu":
-			total += TiposDeJogada.FU
-		elif nome_da_jogada == "quadrada":
-			total += TiposDeJogada.QUADRADA
-		elif nome_da_jogada == "sequencia":
-			total += TiposDeJogada.SEQUENCIA
+		if TiposDeJogada.eh_jogada_especial(nome_da_jogada):
+			total += TiposDeJogada.JOGADAS_ESPECIAIS[nome_da_jogada]
 		return total
 
 	def obter_pontuacao_da_jogada(self, nome_da_jogada, eh_de_boca, dados):
