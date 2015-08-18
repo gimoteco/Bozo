@@ -79,12 +79,11 @@ class Bozo:
 
 	@staticmethod
 	def obter_pontuacao_da_jogada_numerica(nome_da_jogada, dados):
+		total = 0
 		if not TiposDeJogada.eh_jogada_especial(nome_da_jogada):
 			numero_do_dado = TiposDeJogada.JOGADAS_NUMERICAS[nome_da_jogada]
-			total = sum(filter(lambda dado: dado == numero_do_dado, dados))
-			return total
-		return 0
-
+			total =+ sum(filter(lambda dado: dado == numero_do_dado, dados))
+		return total
 
 	@staticmethod
 	def obter_adicional_de_boca(nome_da_jogada, eh_de_boca):
